@@ -84,5 +84,14 @@ namespace ParkingLotAPP.Data.Repositories
             ("carbrandid", SearchOrder.DESC) => query.OrderByDescending(x => x.CarBrandId),
             _ => query.OrderBy(x => x.Name)
         };
+
+        public async Task<IReadOnlyList<Guid>> GetIdsListByIds(List<Guid> list, CancellationToken cancellationToken)
+            => await _dbContext.Cars.AsNoTracking().Where(car => list.Contains(car.Id)).Select(car => car.Id).ToListAsync(cancellationToken);
+
+        public async Task<IReadOnlyList<Car>> GetListByIds(List<Guid> list, CancellationToken cancellationToken)
+            => await _dbContext.Cars
+                        .AsNoTracking()
+                        .Where(car => list.Contains(car.Id))
+                        .ToListAsync(cancellationToken);
     }
 }

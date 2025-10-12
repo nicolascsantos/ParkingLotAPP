@@ -26,6 +26,7 @@ builder.Services.AddDbContext<ConsoleDbContext>(options =>
 builder.Services.AddTransient<ICarRepository, CarRepository>();
 builder.Services.AddTransient<ICarColorRepository, CarColorRepository>();
 builder.Services.AddTransient<ICarBrandRepository, CarBrandRepository>();
+builder.Services.AddTransient<IDriverRepository, DriverRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
