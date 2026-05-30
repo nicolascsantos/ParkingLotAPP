@@ -4,6 +4,7 @@ using ParkingLotAPP.Application.Interfaces;
 using ParkingLotAPP.Data;
 using ParkingLotAPP.Data.Repositories;
 using ParkingLotAPP.Domain.Interfaces;
+using ParkingLotAPP.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,7 @@ builder.Services.AddTransient<ICarColorRepository, CarColorRepository>();
 builder.Services.AddTransient<ICarBrandRepository, CarBrandRepository>();
 builder.Services.AddTransient<IDriverRepository, DriverRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IDriverCarAssignmentService, DriverCarAssignmentService>();
 
 var app = builder.Build();
 
