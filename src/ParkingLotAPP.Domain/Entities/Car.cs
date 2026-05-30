@@ -1,4 +1,4 @@
-﻿using ParkingLotAPP.Domain.SeedWork;
+using ParkingLotAPP.Domain.SeedWork;
 using ParkingLotAPP.Domain.Validation;
 using ParkingLotAPP.Domain.ValueObjects;
 using System.Text.Json.Serialization;
@@ -7,30 +7,30 @@ namespace ParkingLotAPP.Domain.Entities
 {
     public class Car : Entity
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public Plate Plate { get; set; }
+        public Plate Plate { get; private set; }
 
-        public int Year { get; set; }
+        public int Year { get; private set; }
 
-        public int ModelYear { get; set; }
+        public int ModelYear { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
-        public Guid CarBrandId { get; set; }
+        public Guid CarBrandId { get; private set; }
 
-        public Guid CarColorId { get; set; }
+        public Guid CarColorId { get; private set; }
 
-        public Guid DriverId { get; set; }
-
-        [JsonIgnore]
-        public CarBrand CarBrand { get; set; } = null!;
+        public Guid DriverId { get; private set; }
 
         [JsonIgnore]
-        public CarColor CarColor { get; set; } = null!;
+        public CarBrand CarBrand { get; private set; } = null!;
 
         [JsonIgnore]
-        public Driver Driver { get; set; }
+        public CarColor CarColor { get; private set; } = null!;
+
+        [JsonIgnore]
+        public Driver Driver { get; private set; } = null!;
 
         public Car(
             string name,
@@ -39,7 +39,7 @@ namespace ParkingLotAPP.Domain.Entities
             Guid carBrandId,
             Guid carColorId,
             string plate
-        )
+        ) : base()
         {
             Name = name;
             Year = year;
@@ -51,11 +51,9 @@ namespace ParkingLotAPP.Domain.Entities
             Validate();
         }
 
-        public Car()
-        {
-            
-        }
-        public void Validate()
+        private Car() { }
+
+        public override void Validate()
         {
             DomainValidation.NotNull(Name, nameof(Name));
             DomainValidation.NotNullOrEmpty(Name, nameof(Name));
@@ -67,7 +65,7 @@ namespace ParkingLotAPP.Domain.Entities
         }
 
         public void Update(
-            string name, 
+            string name,
             int year,
             int modelYear,
             Guid? carBrandId,
@@ -81,6 +79,13 @@ namespace ParkingLotAPP.Domain.Entities
             CarBrandId = carBrandId ?? CarBrandId;
             CarColorId = carColorId ?? CarColorId;
             Plate = Plate.Create(plate);
+            Validate();
+        }
+
+        public void AssignDriver(Driver driver)
+        {
+            Driver = driver;
+            DriverId = driver.Id;
         }
     }
 }
