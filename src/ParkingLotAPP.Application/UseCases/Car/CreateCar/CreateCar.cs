@@ -1,9 +1,9 @@
-﻿using ParkingLotAPP.Application.DTO;
+using ParkingLotAPP.Application.DTO;
 using ParkingLotAPP.Application.Exceptions;
 using ParkingLotAPP.Application.Interfaces;
 using ParkingLotAPP.Application.UseCases.Car.Common;
+using ParkingLotAPP.Domain.Factories;
 using ParkingLotAPP.Domain.Interfaces;
-using DomainEntity = ParkingLotAPP.Domain.Entities;
 
 namespace ParkingLotAPP.Application.UseCases.Car.CreateCar
 {
@@ -36,8 +36,7 @@ namespace ParkingLotAPP.Application.UseCases.Car.CreateCar
             var carColor = await _carColorRepository
                 .GetById(request.CarColorId, cancellationToken) ?? throw new NotFoundException($"CarColor '{request.CarColorId}' does not exist.");
 
-
-            var car = new DomainEntity.Car(
+            var car = CarFactory.Create(
                 request.Name,
                 request.Year,
                 request.ModelYear,
