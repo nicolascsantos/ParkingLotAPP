@@ -1,25 +1,26 @@
-﻿using ParkingLotAPP.Domain.SeedWork;
+using ParkingLotAPP.Domain.SeedWork;
 using ParkingLotAPP.Domain.Validation;
 
 namespace ParkingLotAPP.Domain.Entities
 {
-    public class Driver : Entity
+    public class Driver : AggregateRoot
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Document { get; set; }
+        public string Document { get; private set; }
 
-        public string ContractNumber { get; set; }
+        public string ContractNumber { get; private set; }
 
-        public string Email { get; set; }
+        public string Email { get; private set; }
 
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; private set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
-        public ICollection<Car> Cars { get; set; } = new List<Car>();
+        private readonly List<Car> _cars = new();
+        public IReadOnlyCollection<Car> Cars => _cars.AsReadOnly();
 
         public Driver(
             string name,
@@ -28,7 +29,7 @@ namespace ParkingLotAPP.Domain.Entities
             string email,
             string phoneNumber,
             bool isActive = true
-        )
+        ) : base()
         {
             Name = name;
             Document = document;
@@ -40,7 +41,7 @@ namespace ParkingLotAPP.Domain.Entities
             Validate();
         }
 
-        public Driver() {}
+        private Driver() { }
 
         public void Activate()
         {
@@ -54,7 +55,13 @@ namespace ParkingLotAPP.Domain.Entities
             Validate();
         }
 
-        public void Validate()
+        public void AddCar(Car car)
+        {
+            car.AssignDriver(this);
+            _cars.Add(car);
+        }
+
+        public override void Validate()
         {
             DomainValidation.NotNull(Name, nameof(Name));
             DomainValidation.MinLength(Name, nameof(Name), 3);
