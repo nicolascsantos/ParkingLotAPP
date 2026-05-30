@@ -52,6 +52,48 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.CarColor
                 .WithMessage("Name should not be empty or null.");
         }
 
+        [Fact(DisplayName = nameof(InstantiateErrorWhenHexIsNull))]
+        [Trait("Domain", "CarColor - Entities")]
+        public void InstantiateErrorWhenHexIsNull()
+        {
+            Action action = () => new DomainEntity.CarColor("Red", null!);
 
+            action.Should()
+                .Throw<EntityValidationException>()
+                .WithMessage("Hex should not be null.");
+        }
+
+        [Fact(DisplayName = nameof(Update))]
+        [Trait("Domain", "CarColor - Entities")]
+        public void Update()
+        {
+            var carColor = _fixture.GetValidCarColor();
+
+            carColor.Update("Blue", "#0000FF");
+
+            carColor.Name.Should().Be("Blue");
+            carColor.Hex.Should().Be("#0000FF");
+        }
+
+        [Fact(DisplayName = nameof(UpdateErrorWhenNameIsEmpty))]
+        [Trait("Domain", "CarColor - Entities")]
+        public void UpdateErrorWhenNameIsEmpty()
+        {
+            var carColor = _fixture.GetValidCarColor();
+
+            Action action = () => carColor.Update("", "#0000FF");
+
+            action.Should().Throw<EntityValidationException>();
+        }
+
+        [Fact(DisplayName = nameof(CarsCollectionStartsEmpty))]
+        [Trait("Domain", "CarColor - Entities")]
+        public void CarsCollectionStartsEmpty()
+        {
+            var carColor = _fixture.GetValidCarColor();
+
+            carColor.Cars.Should().NotBeNull();
+            carColor.Cars.Should().BeEmpty();
+        }
     }
 }
