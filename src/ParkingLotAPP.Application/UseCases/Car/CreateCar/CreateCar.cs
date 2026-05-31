@@ -48,20 +48,17 @@ namespace ParkingLotAPP.Application.UseCases.Car.CreateCar
             await _carRepository.Add(car, cancellationToken);
             await _unitOfWork.Commit(cancellationToken);
 
-            var insertedCar = await _carRepository
-                .GetByIdWithModelAndColor(car.Id, cancellationToken);
-
             return new CarModelOutput(
-                insertedCar.Id,
-                insertedCar.Name,
-                insertedCar.Year,
-                insertedCar.ModelYear,
+                car.Id,
+                car.Name,
+                car.Year,
+                car.ModelYear,
                 new CarBrandDTO(
-                    insertedCar.CarBrand.Id,
-                    insertedCar.CarBrand.Name
+                    carBrand.Id,
+                    carBrand.Name
                 ),
-                new CarColorDTO(insertedCar.CarColor.Id, insertedCar.CarColor.Name, insertedCar.CarColor.Hex),
-                insertedCar.Plate.Number
+                new CarColorDTO(carColor.Id, carColor.Name, carColor.Hex),
+                car.Plate.Number
             );
         }
     }
