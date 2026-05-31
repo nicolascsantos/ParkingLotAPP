@@ -60,6 +60,7 @@ namespace ParkingLotAPP.Data.Repositories
             var cars = await query
                 .Include(x => x.CarBrand)
                 .Include(x => x.CarColor)
+                .Include(x => x.Driver)
                 .Skip(toSkip)
                 .Take(input.PerPage)
                 .ToListAsync(cancellationToken);
@@ -93,5 +94,16 @@ namespace ParkingLotAPP.Data.Repositories
                         .AsNoTracking()
                         .Where(car => list.Contains(car.Id))
                         .ToListAsync(cancellationToken);
+
+        public async Task<Car> GetByIdWithModelAndColorAndDriver(Guid id, CancellationToken cancellationToken)
+        {
+            var car = await _dbContext.Cars
+               .AsNoTracking()
+               .Include(x => x.CarBrand)
+               .Include(x => x.CarColor)
+               .FirstOrDefaultAsync(cancellationToken);
+
+            return car ?? throw new NotFoundException($"Car '{id}' not found.");
+        }
     }
 }

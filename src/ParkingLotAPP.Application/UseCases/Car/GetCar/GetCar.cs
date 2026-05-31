@@ -18,7 +18,7 @@ namespace ParkingLotAPP.Application.UseCases.Car.GetCar
 
         public async Task<CarModelOutput> Handle(GetCarInput request, CancellationToken cancellationToken)
         {
-            var car = await _carRepository.GetByIdWithModelAndColor(request.Id, cancellationToken);
+            var car = await _carRepository.GetByIdWithModelAndColorAndDriver(request.Id, cancellationToken);
 
             return new CarModelOutput(
                 car.Id,

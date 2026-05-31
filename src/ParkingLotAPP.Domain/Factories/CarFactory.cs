@@ -10,10 +10,11 @@ namespace ParkingLotAPP.Domain.Factories
             int modelYear,
             Guid carBrandId,
             Guid carColorId,
-            string plate
+            string plate,
+            Guid driverId
         )
         {
-            return new Car(name, year, modelYear, carBrandId, carColorId, plate);
+            return new Car(name, year, modelYear, carBrandId, carColorId, plate, driverId);
         }
     }
 }

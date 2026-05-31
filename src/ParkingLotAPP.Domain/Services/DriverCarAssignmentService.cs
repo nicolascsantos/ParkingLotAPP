@@ -18,7 +18,8 @@ namespace ParkingLotAPP.Domain.Services
                     carData.ModelYear,
                     carData.CarBrandId,
                     carData.CarColorId,
-                    carData.Plate
+                    carData.Plate,
+                    driver.Id
                 );
 
                 driver.AddCar(car);

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ParkingLotAPP.Domain.Entities.Car">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAABAGAABAAACAgAAQAAAAQgCAAAAAAAAgAACA=</HashCode>
+      <FileName>Entities\Car.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CarBrand" />
+      <Property Name="CarColor" />
+      <Property Name="Plate" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.SeedWork.Entity">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SeedWork\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.Entities.CarBrand">
+    <Position X="14.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAACAACAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CarBrand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.SeedWork.AggregateRoot">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SeedWork\AggregateRoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.Entities.CarColor">
+    <Position X="16.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAACAACAAAgAACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CarColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.Entities.Driver">
+    <Position X="19.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAACACDAAABCECAAQAQAAAABAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Driver.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cars" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ParkingLotAPP.Domain.ValueObjects.Plate">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAgEAAAIAAAAAAAMAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValueObjects\Plate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

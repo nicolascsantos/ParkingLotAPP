@@ -38,7 +38,8 @@ namespace ParkingLotAPP.Domain.Entities
             int modelYear,
             Guid carBrandId,
             Guid carColorId,
-            string plate
+            string plate,
+            Guid driverId
         ) : base()
         {
             Name = name;
@@ -48,6 +49,7 @@ namespace ParkingLotAPP.Domain.Entities
             CarBrandId = carBrandId;
             CarColorId = carColorId;
             Plate = Plate.Create(plate);
+            DriverId = driverId;
             Validate();
         }
 
