@@ -158,7 +158,7 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Driver
         public void AddCar()
         {
             var driver = _fixture.GetValidDriver();
-            var car = new DomainEntity.Car("Civic", 2024, 2025, Guid.NewGuid(), Guid.NewGuid(), "ABC1234");
+            var car = new DomainEntity.Car("Civic", 2024, 2025, Guid.NewGuid(), Guid.NewGuid(), "ABC1234", Guid.NewGuid());
 
             driver.AddCar(car);
 
@@ -171,9 +171,9 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Driver
         [Trait("Domain", "Driver - Entities")]
         public void AddMultipleCars()
         {
-            var driver = _fixture.GetValidDriver();
-            var car1 = new DomainEntity.Car("Civic", 2024, 2025, Guid.NewGuid(), Guid.NewGuid(), "ABC1234");
-            var car2 = new DomainEntity.Car("Corolla", 2023, 2024, Guid.NewGuid(), Guid.NewGuid(), "XYZ5678");
+            var driver = _fixture.GetValidDriver(); 
+            var car1 = new DomainEntity.Car("Civic", 2024, 2025, Guid.NewGuid(), Guid.NewGuid(), "ABC1234", Guid.NewGuid());
+            var car2 = new DomainEntity.Car("Corolla", 2023, 2024, Guid.NewGuid(), Guid.NewGuid(), "XYZ5678", Guid.NewGuid());
 
             driver.AddCar(car1);
             driver.AddCar(car2);

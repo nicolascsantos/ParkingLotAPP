@@ -21,10 +21,11 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Car
             var modelYear = _fixture.GetValidModelYear();
             var carBrandId = Guid.NewGuid();
             var carColorId = Guid.NewGuid();
+            var driverId = Guid.NewGuid();
             var plate = _fixture.GetValidPlate();
             var dateTimeBefore = DateTime.Now;
 
-            var car = new DomainEntity.Car(name, year, modelYear, carBrandId, carColorId, plate);
+            var car = new DomainEntity.Car(name, year, modelYear, carBrandId, carColorId, plate, driverId);
 
             var dateTimeAfter = DateTime.Now.AddSeconds(1);
 
@@ -50,7 +51,7 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Car
         {
             Action action = () => new DomainEntity.Car(
                 name!, _fixture.GetValidYear(), _fixture.GetValidModelYear(),
-                Guid.NewGuid(), Guid.NewGuid(), _fixture.GetValidPlate()
+                Guid.NewGuid(), Guid.NewGuid(), _fixture.GetValidPlate(), Guid.NewGuid()
             );
 
             action.Should().Throw<EntityValidationException>();
@@ -64,7 +65,7 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Car
         {
             Action action = () => new DomainEntity.Car(
                 name, _fixture.GetValidYear(), _fixture.GetValidModelYear(),
-                Guid.NewGuid(), Guid.NewGuid(), _fixture.GetValidPlate()
+                Guid.NewGuid(), Guid.NewGuid(), _fixture.GetValidPlate(), Guid.NewGuid()
             );
 
             action.Should()
@@ -78,7 +79,7 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Car
         {
             Action action = () => new DomainEntity.Car(
                 _fixture.GetValidCarName(), _fixture.GetValidYear(), _fixture.GetValidModelYear(),
-                Guid.NewGuid(), Guid.NewGuid(), "INVALID"
+                Guid.NewGuid(), Guid.NewGuid(), "INVALID", Guid.NewGuid()
             );
 
             action.Should().Throw<ArgumentNullException>();

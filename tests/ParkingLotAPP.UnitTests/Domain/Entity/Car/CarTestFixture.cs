@@ -15,7 +15,8 @@ namespace ParkingLotAPP.UnitTests.Domain.Entity.Car
                 GetValidModelYear(),
                 Guid.NewGuid(),
                 Guid.NewGuid(),
-                GetValidPlate()
+                GetValidPlate(),
+                Guid.NewGuid()
             );
 
         public string GetValidCarName()
