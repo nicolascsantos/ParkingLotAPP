@@ -31,7 +31,7 @@ namespace ParkingLotAPP.UnitTests.Application.UseCases.CreateDriver
         {
             var input = new CreateDriverInput(
                 "John Doe", "12345678900", "C-0001",
-                "john@test.com", "11999999999", true, DateTime.Now
+                "john@test.com", "11999999999", true
             );
 
             var output = await _useCase.Handle(input, CancellationToken.None);
@@ -57,7 +57,7 @@ namespace ParkingLotAPP.UnitTests.Application.UseCases.CreateDriver
 
             var input = new CreateDriverInput(
                 "Jane Doe", "98765432100", "C-0002",
-                "jane@test.com", "11888888888", true, DateTime.Now, cars
+                "jane@test.com", "11888888888", true, cars
             );
 
             var output = await _useCase.Handle(input, CancellationToken.None);
@@ -80,7 +80,7 @@ namespace ParkingLotAPP.UnitTests.Application.UseCases.CreateDriver
         {
             var input = new CreateDriverInput(
                 "Bob Smith", "11122233344", "C-0003",
-                "bob@test.com", "11777777777", true, DateTime.Now
+                "bob@test.com", "11777777777", true
             );
 
             await _useCase.Handle(input, CancellationToken.None);
@@ -97,7 +97,7 @@ namespace ParkingLotAPP.UnitTests.Application.UseCases.CreateDriver
         {
             var input = new CreateDriverInput(
                 null!, "12345678900", "C-0001",
-                "john@test.com", "11999999999", true, DateTime.Now
+                "john@test.com", "11999999999", true, null
             );
 
             Func<Task> action = () => _useCase.Handle(input, CancellationToken.None);
