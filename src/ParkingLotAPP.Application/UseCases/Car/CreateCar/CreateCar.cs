@@ -31,10 +31,10 @@ namespace ParkingLotAPP.Application.UseCases.Car.CreateCar
         public async Task<CarModelOutput> Handle(CreateCarInput request, CancellationToken cancellationToken)
         {
             var carBrand = await _carBrandRepository
-                .GetById(request.CarBrandId, cancellationToken) ?? throw new NotFoundException($"CarBrand '{request.CarBrandId}' does not exist.");
+                .GetById(request.CarBrandId, cancellationToken);
 
             var carColor = await _carColorRepository
-                .GetById(request.CarColorId, cancellationToken) ?? throw new NotFoundException($"CarColor '{request.CarColorId}' does not exist.");
+                .GetById(request.CarColorId, cancellationToken);
 
             var car = CarFactory.Create(
                 request.Name,
