@@ -19,7 +19,6 @@ namespace ParkingLotAPP.Application.UseCases.Driver.CreateDriver
 
         public bool IsActive { get; set; }
 
-        public DateTime CreatedAt { get; set; }
 
         public List<CarDTO>? Cars { get; set; }
         public CreateDriverInput(
@@ -29,7 +28,6 @@ namespace ParkingLotAPP.Application.UseCases.Driver.CreateDriver
             string email,
             string phoneNumber,
             bool isActive,
-            DateTime createdAt,
             List<CarDTO>? cars = null
         )
         {
@@ -39,7 +37,6 @@ namespace ParkingLotAPP.Application.UseCases.Driver.CreateDriver
             Email = email;
             PhoneNumber = phoneNumber;
             IsActive = isActive;
-            CreatedAt = createdAt;
             Cars = cars;
         }
     }

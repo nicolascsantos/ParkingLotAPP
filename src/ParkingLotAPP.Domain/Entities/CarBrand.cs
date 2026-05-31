@@ -1,34 +1,36 @@
-﻿using ParkingLotAPP.Domain.SeedWork;
+using ParkingLotAPP.Domain.SeedWork;
 using ParkingLotAPP.Domain.Validation;
 
 namespace ParkingLotAPP.Domain.Entities
 {
-    public class CarBrand : Entity
+    public class CarBrand : AggregateRoot
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
-        public ICollection<Car> Cars {  get; set; } = new List<Car>();
-        public CarBrand(string name)
+        private readonly List<Car> _cars = new();
+        public IReadOnlyCollection<Car> Cars => _cars.AsReadOnly();
+
+        public CarBrand(string name) : base()
         {
             Name = name;
             CreatedAt = DateTime.Now;
+            Validate();
         }
 
-        public CarBrand()
-        {
-            
-        }
+        private CarBrand() { }
 
         public void Update(string name)
         {
             Name = name;
+            Validate();
         }
 
-        public void Validate()
+        public override void Validate()
         {
             DomainValidation.NotNull(Name, nameof(Name));
+            DomainValidation.NotNullOrEmpty(Name, nameof(Name));
         }
     }
 }

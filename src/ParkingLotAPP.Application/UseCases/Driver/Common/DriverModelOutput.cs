@@ -1,4 +1,5 @@
-﻿using DomainEntity = ParkingLotAPP.Domain.Entities;
+﻿using ParkingLotAPP.Application.UseCases.Car.Common;
+using DomainEntity = ParkingLotAPP.Domain.Entities;
 
 namespace ParkingLotAPP.Application.UseCases.Driver.Common
 {
@@ -12,7 +13,8 @@ namespace ParkingLotAPP.Application.UseCases.Driver.Common
             string email,
             string phoneNumber,
             bool isActive,
-            DateTime createdAt
+            DateTime createdAt,
+            List<CarModelOutput> cars
         )
         {
             Id = id;
@@ -23,6 +25,7 @@ namespace ParkingLotAPP.Application.UseCases.Driver.Common
             PhoneNumber = phoneNumber;
             IsActive = isActive;
             CreatedAt = createdAt;
+            Cars = cars;
         }
 
         public Guid Id { get; set; }
@@ -41,16 +44,27 @@ namespace ParkingLotAPP.Application.UseCases.Driver.Common
 
         public DateTime CreatedAt { get; set; }
 
+        public List<CarModelOutput> Cars { get; set; }
+
         public static DriverModelOutput FromDriver(DomainEntity.Driver driver)
-            => new DriverModelOutput(
-                driver.Id,
-                driver.Name,
-                driver.Document,
-                driver.ContractNumber,
-                driver.Email,
-                driver.PhoneNumber,
-                driver.IsActive,
-                driver.CreatedAt
+        {
+            List<CarModelOutput> carModelOutputList = new List<CarModelOutput>();
+            foreach (var car in driver.Cars)
+            {
+                carModelOutputList.Add(CarModelOutput.FromCar(car));
+            }
+
+            return new DriverModelOutput(
+                        driver.Id,
+                        driver.Name,
+                        driver.Document,
+                        driver.ContractNumber,
+                        driver.Email,
+                        driver.PhoneNumber,
+                        driver.IsActive,
+                        driver.CreatedAt,
+                        carModelOutputList
             );
+        }
     }
 }

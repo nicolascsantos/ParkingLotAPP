@@ -7,5 +7,7 @@ namespace ParkingLotAPP.Domain.Interfaces
     public interface ICarRepository : IGenericRepository<Car>, ISearchableRepository<Car>
     {
         Task<Car> GetByIdWithModelAndColor(Guid id, CancellationToken cancellationToken);
+
+        Task<Car> GetByIdWithModelAndColorAndDriver(Guid id, CancellationToken cancellationToken);
     }
 }
